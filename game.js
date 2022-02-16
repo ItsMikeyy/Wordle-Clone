@@ -63,13 +63,13 @@ function checkChar(currentChar, index, row, tmpWord){
             $(".status").text("You Win!")
             setTimeout(function(){
                 location.reload();
-            },2000);
+            },3000);
         }
         else if(currentRow === 6 && userWord.toString() != tmpWord["word"].toString()){
-            $(".status").text("You Lose?")
+            $(".status").text("You Lose the word was: " + tmpWord["word"].join(""));
             setTimeout(function(){
                 location.reload();
-            },2000);
+            },3000);
         }
     }
 }
