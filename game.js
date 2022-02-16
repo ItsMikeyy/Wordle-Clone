@@ -7,9 +7,9 @@ $(".submit-button").click(function (){
     if (word.length != 5){
         $(".status").text("Word must be 5 letters!")
     }
-    // else if (words.includes(word) === false){
-    //     $(".status").text("Not in list!")
-    // }
+    else if (words.includes(word) === false){
+        $(".status").text("Not in list!")
+    }
     else{
         checkRow(word)
     }
