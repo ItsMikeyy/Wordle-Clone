@@ -1,0 +1,35 @@
+.game-container{
+    text-align: center;
+    margin: auto;
+}
+.cell{
+    margin: 10px 10px; 
+    display: inline-block;
+    border: solid 2px #000;
+    height: 100px;
+    width: 100px;
+    vertical-align: top
+}
+
+.cell-char{
+    position: relative;
+    top: 25%;   
+}
+.status{
+    padding: 2%;
+}
+
+.not-in-word{
+    background-color: #3a3a3c;
+    color: white;
+}
+
+.wrong-position{
+    background-color: #b59f3b;
+    color: white;
+}
+
+.correct{
+    background-color: #538d4e;
+    color: white;
+}
