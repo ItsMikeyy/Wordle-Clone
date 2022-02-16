@@ -4,6 +4,7 @@ let userWord = [];
 
 $(".submit-button").click(function (){
     word = $(".word-box").val();
+    word = word.toLowerCase();
     if (word.length != 5){
         $(".status").text("Word must be 5 letters!")
     }
