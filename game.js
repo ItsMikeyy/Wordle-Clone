@@ -1,6 +1,29 @@
 let currentRow = 0;
+let currentCell = 0;
 let userWord = [];
+let checkWord = "";
 
+document.addEventListener("keydown", function(e){
+    if(currentCell + 1 < 6 && (event.keyCode >= 65 && event.keyCode <= 90)){
+        let target = $(".row-" + (currentRow + 1) + " .cell-" + (currentCell + 1));
+        target.text(e.key.toUpperCase());
+        currentCell++;
+        checkWord += e.key
+    }
+    if(currentCell > 0 && e.key === "Backspace"){
+        let target = $(".row-" + (currentRow + 1) + " .cell-" + (currentCell));
+        target.text("");
+        currentCell--;
+        checkWord = checkWord.slice(0, -1);
+    }
+
+
+    if (currentCell === 5 && e.key === "Enter"){
+        checkRow(checkWord.toUpperCase());
+        checkWord = "";
+        currentCell = 0;
+    }
+});
 
 $(".submit-button").click(function (){
     word = $(".word-box").val();
