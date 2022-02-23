@@ -4,11 +4,8 @@ let userWord = [];
 let checkWord = "";
 
 document.addEventListener("keydown", function(e){
-    if(currentCell + 1 < 6 && (event.keyCode >= 65 && event.keyCode <= 90)){
-        let target = $(".row-" + (currentRow + 1) + " .cell-" + (currentCell + 1));
-        target.text(e.key.toUpperCase());
-        currentCell++;
-        checkWord += e.key
+    if(event.keyCode >= 65 && event.keyCode <= 90){
+        addChar(event.key)
     }
     if(currentCell > 0 && e.key === "Backspace"){
         let target = $(".row-" + (currentRow + 1) + " .cell-" + (currentCell));
@@ -20,27 +17,46 @@ document.addEventListener("keydown", function(e){
 
     if (currentCell === 5 && e.key === "Enter"){
         checkRow(checkWord.toUpperCase());
-        checkWord = "";
-        currentCell = 0;
     }
 });
 
-$(".submit-button").click(function (){
-    word = $(".word-box").val();
-    word = word.toLowerCase();
-    if (word.length != 5){
-        $(".status").text("Word must be 5 letters!")
+let buttons = document.querySelectorAll(".key-buttons")
+
+for (let i = 0; i < buttons.length; i++){
+    buttons[i].addEventListener("click", function(){
+        if (buttons[i].id === "entr" && currentCell === 5){
+            checkRow(checkWord.toUpperCase());
+        }
+        else if(currentCell > 0 && buttons[i].id === "bkspc"){
+            let target = $(".row-" + (currentRow + 1) + " .cell-" + (currentCell));
+            target.text("");
+            currentCell--;
+            checkWord = checkWord.slice(0, -1);
+        }
+        else if(buttons[i].id != "entr" && buttons[i].id != "bkspc"){
+            addChar(buttons[i].id)
+        }
+
+    });
+}
+
+function addChar(char){
+    if(currentCell + 1 < 6){
+        let target = $(".row-" + (currentRow + 1) + " .cell-" + (currentCell + 1));
+        target.text(char.toUpperCase());
+        currentCell++;
+        checkWord += char
     }
-    else if (words.includes(word) === false){
-        $(".status").text("Not in list!")
-    }
-    else{
-        checkRow(word)
-    }
-    console.log(word);
-})
+}
 
 function checkRow(word){
+    if (words.includes(word.toLowerCase()) === false){
+        $(".status").text("Not in list!")
+        return
+    }
+    $(".status").text("Enter a 5 letter word!")
+    checkWord = "";
+    currentCell = 0;
     let row = $(".cell-row")[currentRow];
     let index = 0;
     let tmpWord = wordData(currentWord);
@@ -61,6 +77,7 @@ function checkChar(currentChar, index, row, tmpWord){
         if(tmpWord[currentChar] >= 1){ tmpWord[currentChar] -= 1;}
         row.querySelector(".cell-" + (index + 1)).innerHTML = currentChar;
         row.querySelectorAll(".cell")[index].classList.add("correct");
+        document.querySelector("#" +  currentChar).classList.add("correct")
         userWord.push(currentChar);
             
     }
@@ -68,18 +85,22 @@ function checkChar(currentChar, index, row, tmpWord){
         if(tmpWord[currentChar] >= 1){
             row.querySelector(".cell-" + (index + 1)).innerHTML = currentChar;
             row.querySelectorAll(".cell")[index].classList.add("wrong-position");
+            document.querySelector("#" +  currentChar).classList.add("wrong-position")
+
             tmpWord[currentChar] -= 1;
             userWord.push(currentChar);
         }
         else{
             row.querySelector(".cell-" + (index + 1)).innerHTML = currentChar;
             row.querySelectorAll(".cell")[index].classList.add("not-in-word");
+            document.querySelector("#" +  currentChar).classList.add("not-in-word")
             userWord.push(currentChar);
         }
     }
     else{
         row.querySelector(".cell-" + (index + 1)).innerHTML = currentChar;
         row.querySelectorAll(".cell")[index].classList.add("not-in-word");
+        document.querySelector("#" +  currentChar).classList.add("not-in-word")
         userWord.push(currentChar);
     }
     if (index == 4){
@@ -2418,7 +2439,8 @@ let words = [
 "youth",
 "zebra",
 "zesty",
-"zonal"];
+"zonal",
+"drums"];
 let currentWord = words[Math.floor(Math.random() * words.length)];
 
 function wordData(currentWord){
