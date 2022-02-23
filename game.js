@@ -73,7 +73,7 @@ function checkRow(word){
 }
 
 function checkChar(currentChar, index, row, tmpWord){
-    if (currentChar === tmpWord["word"][index].toUpperCase()){
+    if (currentChar === tmpWord["word"][index].toUpperCase() && tmpWord[currentChar] != 0){
         if(tmpWord[currentChar] >= 1){ tmpWord[currentChar] -= 1;}
         row.querySelector(".cell-" + (index + 1)).innerHTML = currentChar;
         row.querySelectorAll(".cell")[index].classList.add("correct");
