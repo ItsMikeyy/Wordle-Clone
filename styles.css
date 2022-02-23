@@ -83,7 +83,7 @@ right: 20%;
     }
     .cell-char{
         position: relative;
-        top: 10%;
+        top: -3%
     }
     .key-buttons{
         border: 2px solid #000;
@@ -109,7 +109,7 @@ right: 20%;
      }
     #bkspc-key{
     position: relative;
-    right: 10px;
+    right: 15px;
     }
      #row-offset{
         margin-left: 3px;
@@ -128,47 +128,3 @@ right: 20%;
         background-color: #538d4e;
         color: white;
 }
-/* 
-@media screen and (max-width: 400px) {
-    .cell{
-        margin: 2px 2px; 
-        display: inline-block;
-        border: solid 2px #000;
-        height: 50px;
-        width: 50px;
-        vertical-align: top
-    }
-    .cell-char{
-        position: relative;
-        top: 10%;
-    }
-    .key-buttons{
-        border: 2px solid #000;
-        width: 4%;
-        height: 0.5%;
-        background-color: rgb(241, 241, 241);
-        margin: 5px auto;
-        padding: 1.5%;
-        display: inline-block;
-     }
-    #entr{ 
-        padding-left: 5px;
-        padding-right:  5px;
-        background-color: #3e87e7;
-     }
-     #entr-key{
-        position: relative;
-        right: 100%;
-     }
-     #bkspc{
-        padding-left: 5%;
-        padding-right:  5%;
-     }
-    #bkspc-key{
-    position: relative;
-    right: 50%;
-    }
-     #row-offset{
-        margin-left: 3px;
-    }
-} */
